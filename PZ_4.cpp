@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 class DynamicArray {
@@ -131,7 +132,7 @@ public:
 
     void printMedian() {
         printFunc();
-        int zamena = 0;
+        /*int zamena = 0;
         for(int i = 0; i < size; i++) {
             for(int j = 0; j < size - i - 1; j++) {
                 if(data[i] > data[j]) {
@@ -140,10 +141,11 @@ public:
                     data[j] = zamena;
                 }
             }
-        }
+        }*/
+        Func tmp(*this);
+        sort(tmp.data, tmp.data + size);
         if (size == 0) {
             cout << "Массив пуст" << endl;
-            return;
         }
         double mediana;
         if (size % 2 == 0) {
@@ -157,7 +159,6 @@ public:
     void printAverage() {
         if (size == 0) {
             cout << "Массив пуст" << endl;
-            return;
         }
         double average = 0.0;
         for (int i = 0; i < size; i++) { 
@@ -166,7 +167,7 @@ public:
         cout << "Среднее значение равно: " << average / size << endl;
     }
 
-    void minValue() {
+    int minValue() {
         if (size == 0) {
             cout << "Массив пуст" << endl;
             return;
@@ -178,12 +179,14 @@ public:
             }
         }
         cout << "Минимальное значение равно " << min_value << endl;
+
+        return min_value;
     }
 
-    void maxValue() {
+    int maxValue() {
         if (size == 0) {
             cout << "Массив пуст" << endl;
-            return;
+            return 0;
         }
         int max_value = data[0];
         for (int i = 1; i < size; i++) {
@@ -192,6 +195,8 @@ public:
             }
         }
         cout << "Максимальное значение равно " << max_value << endl;
+
+        return max_value;
     }
 };
 
