@@ -124,12 +124,27 @@ public:
 class Func : public DynamicArray {
 public:
     using DynamicArray::DynamicArray;
+    
     void printFunc() {
         cout << "Выполняется вычисление медианного значения" << endl;
     }
 
     void printMedian() {
         printFunc();
+        int zamena = 0;
+        for(int i = 0; i < size; i++) {
+            for(int j = 0; j < size - i - 1; j++) {
+                if(data[i] > data[j]) {
+                    zamena = data[i];
+                    data[i] = data[j];
+                    data[j] = zamena;
+                }
+            }
+        }
+        if (size == 0) {
+            cout << "Массив пуст" << endl;
+            return;
+        }
         double mediana;
         if (size % 2 == 0) {
             mediana = (data[size / 2 - 1] + data[size / 2]) / 2.0;
@@ -152,9 +167,13 @@ public:
     }
 
     void minValue() {
+        if (size == 0) {
+            cout << "Массив пуст" << endl;
+            return;
+        }
         int min_value = data[0];
-        for (int i = 0; i < size; i++){
-            if(min_value >= data[i]){
+        for (int i = 1; i < size; i++) {
+            if (min_value > data[i]) {
                 min_value = data[i];
             }
         }
@@ -162,9 +181,13 @@ public:
     }
 
     void maxValue() {
+        if (size == 0) {
+            cout << "Массив пуст" << endl;
+            return;
+        }
         int max_value = data[0];
-        for (int i = 0; i < size; i++){
-            if(max_value <= data[i]){
+        for (int i = 1; i < size; i++) {
+            if (max_value < data[i]) {
                 max_value = data[i];
             }
         }
@@ -216,20 +239,35 @@ int main() {
     arrA.setValue(10, 50); // Неверный индекс
     arrA.setValue(0, 150); // Неверное значение
 
-    Func funcArr(5);
-    funcArr.setValue(0, 10);
-    funcArr.setValue(1, 5);
-    funcArr.setValue(2, 8);
-    funcArr.setValue(3, 15);
-    funcArr.setValue(4, 3);
-
-    cout << "Массив Func: ";
-    funcArr.print();
+    cout << "\n=== АНАЛИЗ МАССИВОВ ===" << endl;
     
-    funcArr.printMedian();
-    funcArr.printAverage();
-    funcArr.minValue();
-    funcArr.maxValue();
+    cout << "\nАнализ массива A:" << endl;
+    
+    Func func1(3);
+    func1.setValue(0, 10);
+    func1.setValue(1, 20);
+    func1.setValue(2, 30);
+    
+    cout << "Func1 массив: ";
+    func1.print();
+    func1.printMedian();
+    func1.printAverage();
+    func1.minValue();
+    func1.maxValue();
+    
+    Func func2(5);
+    func2.setValue(0, 5);
+    func2.setValue(1, 15);
+    func2.setValue(2, 25);
+    func2.setValue(3, 35);
+    func2.setValue(4, 45);
+    
+    cout << "\nFunc2 массив: ";
+    func2.print();
+    func2.printMedian();
+    func2.printAverage();
+    func2.minValue();
+    func2.maxValue();
 
     return 0;
 }
