@@ -132,16 +132,6 @@ public:
 
     void printMedian() {
         printFunc();
-        /*int zamena = 0;
-        for(int i = 0; i < size; i++) {
-            for(int j = 0; j < size - i - 1; j++) {
-                if(data[i] > data[j]) {
-                    zamena = data[i];
-                    data[i] = data[j];
-                    data[j] = zamena;
-                }
-            }
-        }*/
         Func tmp(*this);
         sort(tmp.data, tmp.data + size);
         if (size == 0) {
