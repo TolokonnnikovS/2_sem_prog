@@ -1,0 +1,3 @@
+Dynamic Array (TXT format):
+Size: 3
+Elements: 5 7 9

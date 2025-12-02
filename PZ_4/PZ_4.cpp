@@ -1,9 +1,8 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 
 class DynamicArray {
-protected:
+private:
     int *data;
     int size;
 
@@ -51,7 +50,7 @@ public:
     }
 
     // Геттер
-    int getValue(int index) {
+    int getValue(int index) const {
         if (0 <= index && index < size) {
             return data[index];
         } else {
@@ -122,71 +121,70 @@ public:
 };
 
 
-class Func : public DynamicArray {
+class Func {
 public:
-    using DynamicArray::DynamicArray;
-    
-    void printFunc() {
+    static void printFunc() {
         cout << "Выполняется вычисление медианного значения" << endl;
     }
 
-    void printMedian() {
+    static void printMedian(const DynamicArray& arr) {
         printFunc();
-        Func tmp(*this);
-        sort(tmp.data, tmp.data + size);
-        if (size == 0) {
-            cout << "Массив пуст" << endl;
-        }
-        double mediana;
-        if (size % 2 == 0) {
-            mediana = (data[size / 2 - 1] + data[size / 2]) / 2.0;
-        } else {
-            mediana = data[size / 2];
-        }
-        cout << "Медианное число: " << mediana << endl;
-    }
-
-    void printAverage() {
-        if (size == 0) {
-            cout << "Массив пуст" << endl;
-        }
-        double average = 0.0;
-        for (int i = 0; i < size; i++) { 
-            average += data[i];
-        }
-        cout << "Среднее значение равно: " << average / size << endl;
-    }
-
-    int minValue() {
+        int size = arr.getSize();  // используем геттер
         if (size == 0) {
             cout << "Массив пуст" << endl;
             return;
         }
-        int min_value = data[0];
-        for (int i = 1; i < size; i++) {
-            if (min_value > data[i]) {
-                min_value = data[i];
+        
+        double mediana;
+        if (size % 2 == 0) {
+            mediana = (arr.getValue(size / 2 - 1) + arr.getValue(size / 2)) / 2.0;
+        } else {
+            mediana = arr.getValue(size / 2);
+        }
+        cout << "Медианное число: " << mediana << endl;
+    }
+
+    static void printAverage(const DynamicArray& arr) {
+        int size = arr.getSize();  // используем геттер
+        if (size == 0) {
+            cout << "Массив пуст" << endl;
+            return;
+        }
+        double average = 0.0;
+        for (int i = 0; i < size; i++) { 
+            average += arr.getValue(i);  // используем геттер
+        }
+        cout << "Среднее значение равно: " << average / size << endl;
+    }
+
+    static void minValue(const DynamicArray& arr) {
+        int size = arr.getSize();  // используем геттер
+        if (size == 0) {
+            cout << "Массив пуст" << endl;
+            return;
+        }
+        int min_value = arr.getValue(0);  // используем геттер
+        for (int i = 1; i < size; i++) {  // начинаем с 1
+            if (min_value > arr.getValue(i)) {
+                min_value = arr.getValue(i);
             }
         }
         cout << "Минимальное значение равно " << min_value << endl;
-
-        return min_value;
     }
 
-    int maxValue() {
+    static void maxValue(const DynamicArray& arr) {
+        int size = arr.getSize();  // используем геттер
         if (size == 0) {
             cout << "Массив пуст" << endl;
-            return 0;
+            return;
         }
-        int max_value = data[0];
-        for (int i = 1; i < size; i++) {
-            if (max_value < data[i]) {
-                max_value = data[i];
+        int max_value = arr.getValue(0);  // используем геттер
+        for (int i = 1; i < size; i++) {  // начинаем с 1
+            if (max_value < arr.getValue(i)) {
+                max_value = arr.getValue(i);
             }
         }
         cout << "Максимальное значение равно " << max_value << endl;
-
-        return max_value;
     }
 };
 
@@ -234,35 +232,26 @@ int main() {
     arrA.setValue(10, 50); // Неверный индекс
     arrA.setValue(0, 150); // Неверное значение
 
+
     cout << "\n=== АНАЛИЗ МАССИВОВ ===" << endl;
     
     cout << "\nАнализ массива A:" << endl;
+    Func::printMedian(arrA);
+    Func::printAverage(arrA);
+    Func::minValue(arrA);
+    Func::maxValue(arrA);
     
-    Func func1(3);
-    func1.setValue(0, 10);
-    func1.setValue(1, 20);
-    func1.setValue(2, 30);
+    cout << "\nАнализ массива B:" << endl;
+    Func::printMedian(arrB);
+    Func::printAverage(arrB);
+    Func::minValue(arrB);
+    Func::maxValue(arrB);
     
-    cout << "Func1 массив: ";
-    func1.print();
-    func1.printMedian();
-    func1.printAverage();
-    func1.minValue();
-    func1.maxValue();
-    
-    Func func2(5);
-    func2.setValue(0, 5);
-    func2.setValue(1, 15);
-    func2.setValue(2, 25);
-    func2.setValue(3, 35);
-    func2.setValue(4, 45);
-    
-    cout << "\nFunc2 массив: ";
-    func2.print();
-    func2.printMedian();
-    func2.printAverage();
-    func2.minValue();
-    func2.maxValue();
+    cout << "\nАнализ массива C:" << endl;
+    Func::printMedian(arrC);
+    Func::printAverage(arrC);
+    Func::minValue(arrC);
+    Func::maxValue(arrC);
 
     return 0;
 }

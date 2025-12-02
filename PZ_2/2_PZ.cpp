@@ -120,6 +120,58 @@ public:
     }
 };
 
+
+class Func : public DynamicArray {
+public:
+    Func(int size) : DynamicArray(size) {}
+    void printFunc() {
+        cout << "Выполняется вычисление медианного значения" << endl;
+    }
+
+    void printMedian() {
+        printFunc();
+        double mediana;
+        if (size % 2 == 0) {
+            mediana = (data[size / 2 - 1] + data[size / 2]) / 2.0;
+        } else {
+            mediana = data[size / 2];
+        }
+        cout << "Медианное число: " << mediana << endl;
+    }
+
+    void printAverage() {
+        if (size == 0) {
+            cout << "Массив пуст" << endl;
+            return;
+        }
+        double average = 0.0;
+        for (int i = 0; i < size; i++) { 
+            average += data[i];
+        }
+        cout << "Среднее значение равно: " << average / size << endl;
+    }
+
+    void minValue() {
+        int min_value = data[0];
+        for (int i = 0; i < size; i++){
+            if(min_value >= data[i]){
+                min_value = data[i];
+            }
+        }
+        cout << "Минимальное значение равно " << min_value << endl;
+    }
+
+    void maxValue() {
+        int max_value = data[0];
+        for (int i = 0; i < size; i++){
+            if(max_value <= data[i]){
+                max_value = data[i];
+            }
+        }
+        cout << "Максимальное значение равно " << max_value << endl;
+    }
+};
+
 int main() {
     // Тестирование класса
     cout << "Создание массива A размером 3:" << endl;

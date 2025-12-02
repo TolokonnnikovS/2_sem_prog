@@ -1,0 +1,11 @@
+Image;Filter;Window_Size;Similarity_%
+C:\Users\user\Desktop\prog\pgoto_aug_pgm\first.pgm;Median;3x3;78.54
+C:\Users\user\Desktop\prog\pgoto_aug_pgm\first.pgm;Median;5x5;69.53
+C:\Users\user\Desktop\prog\pgoto_aug_pgm\two.pgm;Median;3x3;99.44
+C:\Users\user\Desktop\prog\pgoto_aug_pgm\two.pgm;Median;5x5;98.84
+C:\Users\user\Desktop\prog\pgoto_aug_pgm\three.pgm;Median;3x3;98.47
+C:\Users\user\Desktop\prog\pgoto_aug_pgm\three.pgm;Median;5x5;96.37
+C:\Users\user\Desktop\prog\pgoto_aug_pgm\four.pgm;Median;3x3;94.39
+C:\Users\user\Desktop\prog\pgoto_aug_pgm\four.pgm;Median;5x5;85.69
+C:\Users\user\Desktop\prog\pgoto_aug_pgm\five.pgm;Median;3x3;81.21
+C:\Users\user\Desktop\prog\pgoto_aug_pgm\five.pgm;Median;5x5;73.52
